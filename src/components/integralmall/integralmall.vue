@@ -1,7 +1,5 @@
 <template>
- <mt-tab-container-item id="tab-integralmall">
-   <div class="container-wrapper">积分商城</div>
- </mt-tab-container-item>
+<div class="container-wrapper">积分商城</div>
 </template>
 
 <style lang="stylus">
