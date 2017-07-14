@@ -8,6 +8,7 @@
     <div class="lottery-next-wrapper">
       <span class="lottery-cell">距离第6287878开奖剩余:</span>
       <span class="lottery-next-time">00:00:30</span>
+      <mt-button type="default" class="btn-lottery-live">直播</mt-button>
     </div>
   </div>
 </template>
@@ -63,13 +64,27 @@
     .lottery-next-time
       display :inline-block
       background-color :#EA0000
-      margin-left :20px
+      margin-left :10px
       width :80px
       height :25px
       line-height :25px
+      vertical-align: middle
       border-radius: 20px
       text-align :center
+      font-size :8px
       color :#fff
+    .btn-lottery-live
+      width :60px
+      height :25px
+      line-height :25px
+      vertical-align: middle
+      border-radius :20px
+      background-color :#EA0000
+      text-align :center
+      margin-left :5px
+      font-size :8px
+      color :#fff
+
   .clear
     clear :both
 </style>
