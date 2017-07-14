@@ -2,7 +2,7 @@
 <div class="page-wrapper">
   <v-header :title="title" class="header-wrapper"></v-header>
 
-    <div class="page-wrap">
+    <div class="page-wrap" :class="title.tabClass">
       <mt-tab-container class="page-tabbar-container" v-model="selected">
         <mt-tab-container-item id="tabPlan">
           <v-plan></v-plan>
@@ -52,8 +52,14 @@
   overflow: auto;
   height: 100%;
   padding-bottom: 100px;
+&.plan-page
+  margin-top:180px
+&.integralmall-page
+&.me-page
+  margin-top:50px
+
 .mint-tabbar > .mint-tab-item.is-selected
-  background-color : #ffecec
+  background-color : #ff97bc
   color : #ff0000 !important
 </style>
 
@@ -106,15 +112,18 @@ export default {
     this.titleList = [
       {
         text: '北京PK10 - 计划',
-        tabName: 'tabPlan'
+        tabName: 'tabPlan',
+        tabClass: 'plan-page'
       },
       {
         text: '积分商城',
-        tabName: 'tabIntegralmall'
+        tabName: 'tabIntegralmall',
+        tabClass: 'integralmall-page'
       },
        {
         text: '关于我',
-        tabName: 'tabMe'
+        tabName: 'tabMe',
+        tabClass: 'me-page'
       }
     ];
     this.title = this.titleList[0];

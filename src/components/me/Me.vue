@@ -3,6 +3,4 @@
 </template>
 
 <style lang="stylus">
-.container-wrapper
-  color :red
 </style>
