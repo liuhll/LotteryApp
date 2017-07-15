@@ -22,7 +22,7 @@ export default {
   background-attachment: fixed;
 #app
   font-family: 'MicrosoftYaHei', 'Avenir', Helvetica,   Arialsans-serif;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 200;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

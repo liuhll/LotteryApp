@@ -1,6 +1,6 @@
 <template>
   <div class="run-lottery-wrapper">
-    <div class="lottery-cell">第6287878期最新开奖:</div>
+    <div class="lottery-cell">第6287878期最新开奖</div>
     <div class="lottery-number">
         <span v-for="(num,index) in 10" class="lottery-circle" :class="numberClassMap[num-1]">{{num}}</span>
        <div class="clear"></div>
@@ -16,24 +16,25 @@
 <style lang="stylus">
 .run-lottery-wrapper
   height :90px
-  background :#f4f4f4
+  background :#e0e0e0
   text-align :left
   padding-left : 8px
+  padding-bottom : 5px
   .lottery-cell
-    padding : 10px 0 5px 8px
-    line-height :10px
-    font-weight :200
-    font-size :10px
+    padding : 2px 0 3px 8px
+    line-height :22px
+    font-weight :500
+    font-size :12px
     color :#ff5500
   .lottery-number
     margin : 5px  0 5px 10px
     span
       float :left
       display :block
-      margin :0 3px
-      height :20px
-      width :20px
-      line-height :20px
+      margin :0 2px
+      height :25px
+      width :25px
+      line-height :25px
       border-radius: 50%
       text-align :center
       color :#fff
@@ -66,17 +67,17 @@
       background-color :#EA0000
       margin-left :10px
       width :80px
-      height :25px
-      line-height :25px
+      height :20px
+      line-height :20px
       vertical-align: middle
       border-radius: 20px
       text-align :center
-      font-size :8px
+      font-size :10px
       color :#fff
     .btn-lottery-live
       width :60px
-      height :25px
-      line-height :25px
+      height :20px
+      line-height :20px
       vertical-align: middle
       border-radius :20px
       background-color :#EA0000

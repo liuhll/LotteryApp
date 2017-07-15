@@ -51,9 +51,9 @@
 .page-wrap
   overflow: auto;
   height: 100%;
-  padding-bottom: 100px;
+  padding-bottom: 90px;
 &.plan-page
-  margin-top:180px
+  margin-top:225px
 &.integralmall-page
 &.me-page
   margin-top:50px
