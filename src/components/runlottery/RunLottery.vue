@@ -2,7 +2,7 @@
   <div class="run-lottery-wrapper">
     <div class="lottery-cell">第6287878期最新开奖</div>
     <div class="lottery-number">
-        <span v-for="(num,index) in 10" class="lottery-circle" :key="index" :class="numberClassMap[num-1]">{{num}}</span>
+       <span v-for="(num,index) in 10" class="lottery-circle" :key="index" :class="numberClassMap[num-1]">{{num}}</span>
        <div class="clear"></div>
     </div>
     <div class="lottery-next-wrapper">
@@ -91,11 +91,12 @@
 </style>
 
 <script type="text/ecmascript-6">
+const numberClassList = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
 export default {
-  created() {
-     this.numberClassMap = [
-        'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'
-     ];
+  data: function() {
+    return {
+      numberClassMap: numberClassList
+    }
   }
 }
 </script>
