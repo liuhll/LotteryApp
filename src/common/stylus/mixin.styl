@@ -15,3 +15,13 @@ border-none()
 
 bg-image($url)
   background-image: url($url + ".png")
+
+circle($size,$borderColor,$color,$padding)
+  width :$size
+  height :$size
+  line-height :$size
+  display :inline-block
+  border :1px solid $borderColor
+  border-radius :50%
+  padding :$padding
+  color :$color
