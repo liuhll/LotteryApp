@@ -1,6 +1,6 @@
 <template>
  <div class="container-wrapper">
-   <plan-tranck v-for="(n,index) in 100" :trackClass="trackClassMap[index%2]">
+   <plan-tranck v-for="(n,index) in 100" :trackClass="trackClassMap[index%2]" :key="index">
    </plan-tranck>
  </div>
 </template>
@@ -15,10 +15,10 @@ import PlanTrack from 'components/plantrack/PlanTrack';
 
 export default {
 created() {
-  this.trackClassMap = ['plan-track-odd', 'plan-track-even'];
-},
+    this.trackClassMap = ['plan-track-odd', 'plan-track-even'];
+  },
 components: {
-  'plan-tranck': PlanTrack
-}
+    'plan-tranck': PlanTrack
+  }
 }
 </script>

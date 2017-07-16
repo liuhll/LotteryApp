@@ -64,14 +64,55 @@
 </style>
 
 <script  type="text/ecmascript-6">
-import header from 'components/header/Header'
-import plan from 'components/plan/Plan'
-import integralmall from 'components/integralmall/Integralmall'
-import me from 'components/me/Me'
+import header from 'components/header/Header';
+import plan from 'components/plan/Plan';
+import integralmall from 'components/integralmall/Integralmall';
+import me from 'components/me/Me';
+
+const titleList = [
+      {
+        text: '北京PK10 - 计划',
+        tabName: 'tabPlan',
+        tabClass: 'plan-page'
+      },
+      {
+        text: '积分商城',
+        tabName: 'tabIntegralmall',
+        tabClass: 'integralmall-page'
+      },
+       {
+        text: '关于我',
+        tabName: 'tabMe',
+        tabClass: 'me-page'
+      }
+    ];
+
+const tabList = {
+         tabPlan: {
+           src: require('./plan-active.svg'),
+           defaultSrc: require('./plan.svg'),
+           activeSrc: require('./plan-active.svg')
+         },
+         tabIntegralmall: {
+           src: require('./integralmall.svg'),
+           defaultSrc: require('./integralmall.svg'),
+           activeSrc: require('./integralmall-active.svg')
+         },
+          tabMe: {
+           src: require('./me.svg'),
+           defaultSrc: require('./me.svg'),
+           activeSrc: require('./me-active.svg')
+         }
+       };
+
 export default {
   data() {
     return {
-      selected: 'tabPlan'
+      selected: 'tabPlan',
+      titleList: titleList,
+      title: titleList[0],
+      tabList: tabList
+
     };
   },
   watch: {
@@ -92,41 +133,6 @@ export default {
      }
   },
   created() {
-    this.tabList = {
-         tabPlan: {
-           src: require('./plan-active.svg'),
-           defaultSrc: require('./plan.svg'),
-           activeSrc: require('./plan-active.svg')
-         },
-         tabIntegralmall: {
-           src: require('./integralmall.svg'),
-           defaultSrc: require('./integralmall.svg'),
-           activeSrc: require('./integralmall-active.svg')
-         },
-          tabMe: {
-           src: require('./me.svg'),
-           defaultSrc: require('./me.svg'),
-           activeSrc: require('./me-active.svg')
-         }
-       };
-    this.titleList = [
-      {
-        text: '北京PK10 - 计划',
-        tabName: 'tabPlan',
-        tabClass: 'plan-page'
-      },
-      {
-        text: '积分商城',
-        tabName: 'tabIntegralmall',
-        tabClass: 'integralmall-page'
-      },
-       {
-        text: '关于我',
-        tabName: 'tabMe',
-        tabClass: 'me-page'
-      }
-    ];
-    this.title = this.titleList[0];
   },
   activated() {
     document.body.className = 'main-body';

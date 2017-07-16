@@ -22,22 +22,28 @@
 import FuncLotteryItem from 'components/funlottery/FuncLotteryItem';
 
 const FuncLotteryList = [{
-  name: '选择计划',
+  name: 'choiceplan',
+  cname: '选择计划',
   imgSrc: require('./plan.svg')
 }, {
-  name: '切换公式',
+  name: 'swithfunc',
+  cname: '切换公式',
   imgSrc: require('./function.svg')
 }, {
-  name: '基础指标',
+  name: 'setbasicnorm',
+  cname: '基础指标',
   imgSrc: require('./norm.svg')
 }, {
-  name: '数据分析',
+  name: 'dataanalyse',
+  cname: '数据分析',
   imgSrc: require('./analyse.svg')
 }, {
-  name: '历史开奖',
+  name: 'lotteryyhistroy',
+  cname: '历史开奖',
   imgSrc: require('./lotteryhistroy.svg')
 }, {
-  name: '购买授权',
+  name: 'authorize',
+  cname: '购买授权',
   imgSrc: require('./authorize.svg')
 }];
 
@@ -47,6 +53,9 @@ export default {
         FuncLotteryList: FuncLotteryList
 
     };
+  },
+  methods: {
+
   },
   components: {
     'func-lottery-item': FuncLotteryItem

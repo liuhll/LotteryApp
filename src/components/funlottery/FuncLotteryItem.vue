@@ -1,9 +1,9 @@
 <template>
-   <div class="func-item-wrapper">
+   <div class="func-item-wrapper" @click="execFuncLottery($event,funcItemData)">
       <div class="func-icon">
-        <img :src="funcItemData.imgSrc" :alt="funcItemData.name">
+        <img :src="funcItemData.imgSrc" :alt="funcItemData.cname">
       </div>
-    <div class="func-text">{{funcItemData.name}}</div>
+    <div class="func-text">{{funcItemData.cname}}</div>
   </div>
 </template>
 
@@ -35,6 +35,18 @@ export default {
   props: {
     funcItemData: {
       type: Object
+    }
+  },
+  methods: {
+    execFuncLottery: function(event, funcData) {
+      switch (funcData.name) {
+        case 'choiceplan':
+          this.choicePlan();
+        break;
+      }
+    },
+    choicePlan() {
+      this.$router.push({ name: 'choice' });
     }
   }
 }

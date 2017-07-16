@@ -7,7 +7,15 @@ item-wrapper($width,$iconsize,$left,$fontsize)
   background :#ffc1e0
   text-align :center
   border-radius :5px
-  bar
+  &:active
+    background: #ff79bc
+    .func-text
+      color: #ffff37
+    .func-icon
+      img
+        height :$iconsize + 3px
+        width :$iconsize + 3px
+
   .func-icon
     height :$iconsize
     width :$iconsize

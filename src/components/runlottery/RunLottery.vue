@@ -16,7 +16,7 @@
 <style lang="stylus">
 .run-lottery-wrapper
   height :90px
-  background :#e0e0e0
+  background :#f0f0f0
   text-align :left
   padding-left : 8px
   padding-bottom : 5px

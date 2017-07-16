@@ -8,6 +8,7 @@ import PhoneRegister from 'components/register/PhoneRegister';
 import Plan from 'components/plan/Plan';
 import IntegralMall from 'components/integralmall/IntegralMall';
 import Me from 'components/me/Me';
+import ChiocePlan from 'components/choiceplan/ChoicePlan';
 
 Vue.use(Router);
 
@@ -50,6 +51,10 @@ const routes = [{
         name: 'phoneRegister',
         component: PhoneRegister
     }]
+}, {
+    path: '/plan/choice',
+    name: 'choice',
+    component: ChiocePlan
 }];
 
 export default new Router({
