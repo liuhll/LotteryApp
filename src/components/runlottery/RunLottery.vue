@@ -1,10 +1,7 @@
 <template>
   <div class="run-lottery-wrapper">
     <div class="lottery-cell">第6287878期最新开奖</div>
-    <div class="lottery-number">
-       <span v-for="(num,index) in 10" class="lottery-circle" :key="index" :class="numberClassMap[num-1]">{{num}}</span>
-       <div class="clear"></div>
-    </div>
+    <lottery-number :lotteryNumber="lotteryNumber"></lottery-number>
     <div class="lottery-next-wrapper">
       <span class="lottery-cell">距离第6287878开奖剩余:</span>
       <span class="lottery-next-time">00:00:30</span>
@@ -26,40 +23,6 @@
     font-weight :500
     font-size :12px
     color :#ff5500
-  .lottery-number
-    margin : 5px  0 5px 10px
-    span
-      float :left
-      display :block
-      margin :0 2px
-      height :25px
-      width :25px
-      line-height :25px
-      border-radius: 50%
-      text-align :center
-      color :#fff
-    .one
-      background :#edae00
-    .two
-      background :#0483f6
-    .three
-      background :#474747
-    .four
-       background :#f16804
-    .five
-      background :#00bfcf
-    .six
-      background :#4606f4
-    .seven
-      background :#787878
-    .eight
-      background :#ef1410
-    .nine
-      background :#bf0c00
-    .ten
-      background :#1fbc04
-    .clear
-      clear :both
   .lottery-next-wrapper
     padding-bottom : 5px
     .lottery-next-time
@@ -91,12 +54,15 @@
 </style>
 
 <script type="text/ecmascript-6">
-const numberClassList = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+import LotteryNumber from 'components/lotterynumber/LotteryNumber'
 export default {
-  data: function() {
+  data() {
     return {
-      numberClassMap: numberClassList
+      lotteryNumber: [3, 4, 2, 1, 5, 6, 7, 8, 9, 10]
     }
+  },
+  components: {
+    'lottery-number': LotteryNumber
   }
 }
 </script>

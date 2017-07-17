@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="header-wrapper">
   <div class="header">
   <div class="title-wrapper">
     <span v-if="title.showBack" class="back" @click="back">
@@ -19,41 +19,47 @@
 </template>
 
 <style lang="stylus" rel="stylesheet/stylus">
-.header
-  height : 30px
-  background-color : #CE0000
-  line-height :30px
-  text-align :center
-  .title-wrapper
-    font-size :15px
-    color : #FCFCFC
-    span
-      display :inline-block
-    .back
-      width :12%
-      margin-left : -10px
-      img
-        width :20px
-        height :20px
-        line-height :20px
-        vertical-align :middle
-        padding : 3px
-    .title
-      width :74%
-      font-weight :700
-    .letf-patch-title
-      padding-left :35px
-    .set
-      width : 12%
+.header-wrapper
+  top: 0
+  right: 0
+  left: 0
+  position: fixed
+  z-index: 1
+  .header
+    height : 30px
+    background-color : #CE0000
+    line-height :30px
+    text-align :center
+    .title-wrapper
+      font-size :15px
+      color : #FCFCFC
+      span
+        display :inline-block
+      .back
+        width :12%
+        margin-left : -10px
+        img
+          width :20px
+          height :20px
+          line-height :20px
+          vertical-align :middle
+          padding : 3px
+      .title
+        width :74%
+        font-weight :700
+      .letf-patch-title
+        padding-left :35px
+      .set
+        width : 12%
 
-      img
-        width :20px
-        height :20px
-        line-height :20px
-        vertical-align :middle
-        padding : 3px
-  .lottery-run-wrapper
-    height : 180px
+        img
+          width :20px
+          height :20px
+          line-height :20px
+          vertical-align :middle
+          padding : 3px
+    .lottery-run-wrapper
+      height : 180px
 
 </style>
 

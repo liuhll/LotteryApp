@@ -1,6 +1,6 @@
 <template>
 <div class="page-wrapper">
-  <v-header :title="title" class="header-wrapper"></v-header>
+  <v-header :title="title"></v-header>
 
     <div class="page-wrap" :class="title.tabClass">
       <mt-tab-container class="page-tabbar-container" v-model="selected">
@@ -37,12 +37,6 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
 @import "../../common/stylus/mixin.styl"
-.header-wrapper
-  top: 0
-  right: 0
-  left: 0
-  position: fixed
-  z-index: 1
 
 .page-tabbar
   overflow: hidden;
