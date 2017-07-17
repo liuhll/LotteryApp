@@ -43,10 +43,16 @@ export default {
         case 'choiceplan':
           this.choicePlan();
         break;
+        case 'lotteryyhistroy':
+          this.lotteryyHistroy();
+        break;
       }
     },
     choicePlan() {
       this.$router.push({ name: 'choice' });
+    },
+    lotteryyHistroy() {
+      this.$router.push({ name: 'history' });
     }
   }
 }
