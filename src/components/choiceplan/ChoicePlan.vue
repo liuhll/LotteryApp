@@ -45,6 +45,7 @@
     border-bottom :1px solid #eee
     box-shadow: 1px 1px 1px #fcfcfc
     padding :5px 0 10px 0
+    margin-top :30px
     .selected-plan-title
       height :28px
       line-height :28px

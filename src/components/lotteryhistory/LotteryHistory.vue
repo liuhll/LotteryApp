@@ -27,7 +27,7 @@
 .history-opt-wrapper
   height :30px
   line-height :30px
-  text-align :left
+  text-align :right
   background :#ffecf5
   top: 30px
   right: 0
@@ -47,7 +47,7 @@
     height :25px
     line-height :25px
     vertical-align :middle
-    margin-left :10px
+    margin-right :10px
     color :#fff
     &:active
       background-color :#ae0000
