@@ -4,13 +4,13 @@
      <div class="page-navbar">
       <mt-navbar class="page-part" v-model="selected">
         <mt-tab-item :id="item.planTab.id" v-for="(item,index) in planDetails" :key="index">{{ item.planTab.text }}</mt-tab-item>
-      </mt-navbar>
-      <mt-tab-container class="swiper-container" v-model="selected">
-        <mt-tab-container-item :id="item.planTab.id" v-for="(item,index) in planDetails" :key="index">
-            <mt-cell v-for="(n,index) in 10" :key="index" :title="item.planTab.text  + n" />
-        </mt-tab-container-item>
-      </mt-tab-container>
+      </mt-navbar> 
     </div>
+    <mt-tab-container class="swiper-container" v-model="selected">
+      <mt-tab-container-item :id="item.planTab.id" v-for="(item,index) in planDetails" :key="index">
+        <mt-cell v-for="(n,index) in 10" :key="index" :title="item.planTab.text  + n" />
+      </mt-tab-container-item>
+    </mt-tab-container>
 </div>
 </template>
 <style lang="stylus">
@@ -18,9 +18,11 @@
 .page-navbar
   margin-top:30px
   .page-part
-    height :35px
+    height :35px   
     .mint-tab-item
+      min-width :60px
       line-height :35px
+      display :inline-block
       vertical-align :middle
       &.is-selected
         color :#ce0000
@@ -66,7 +68,43 @@ export default {
             planTab: {
               id: '3',
               text: "季军"
-            }
+            },
+        },
+        {
+            planTab: {
+              id: '4',
+              text: "第四名"
+            },
+        },
+        {
+            planTab: {
+              id: '5',
+              text: "第五名"
+            },
+        },
+        {
+            planTab: {
+              id: '6',
+              text: "第六名"
+            },
+        },
+        {
+            planTab: {
+              id: '7',
+              text: "第七名"
+            },
+        },
+          {
+            planTab: {
+              id: '8',
+              text: "第八名"
+            },
+        },
+         {
+            planTab: {
+              id: '9',
+              text: "第九名"
+            },
         }
       ]
     }
@@ -78,25 +116,27 @@ export default {
   },
   mounted() {
     this.ready = true;
-    this.reInitPages();
+
+    let that = this;
     let element = this.$el.getElementsByClassName('swiper-container')[0];
-        element.addEventListener('touchstart', (event) => {
-        if (this.prevent) event.preventDefault();
-        if (this.stopPropagation) event.stopPropagation();
-        if (this.animating) return;
-        this.dragging = true;
-        this.userScrolling = false;
-        this.doOnTouchStart(event);
+        
+      element.addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        that.dragging = true;
+        that.userScrolling = false;
+        that.doOnTouchStart(event);
       });
       element.addEventListener('touchmove', (event) => {
-        if (!this.dragging) return;
-        this.doOnTouchMove(event);
-      });
+        if (!that.dragging) return;
+        event.preventDefault();
+        that.doOnTouchMove(event);
+      },false);
       element.addEventListener('touchend', (event) => {
-        if (!this.dragging) return;
-        this.dragState = {};
-        this.doOnTouchEnd(event);
-        this.dragging = false;
+        if (!that.dragging) return;
+        that.dragState = {};
+        that.doOnTouchEnd(event);
+        that.dragging = false;
 
       });
       this.$elswiper = element;
@@ -104,9 +144,6 @@ export default {
 
   },
   methods: {
-    reInitPages() {
-
-    },
     doOnTouchStart(event) {
       if (this.noDrag) return;
         let elswiper = this.$elswiper;
@@ -136,6 +173,7 @@ export default {
     },
     doOnTouchMove(event) {
       if (this.noDrag) return;
+         
       let dragState = this.dragState;
       let touch = event.touches[0];
       dragState.currentLeft = touch.pageX;
@@ -147,32 +185,41 @@ export default {
 
       let distanceX = Math.abs(offsetLeft);
       let distanceY = Math.abs(offsetTop);
+      
       if (distanceX < 5 || (distanceX >= 5 && distanceY >= 1.73 * distanceX)) {
-        this.userScrolling = true;
+        this.noDrag = false;
         return;
       } else {
-        this.userScrolling = false;
+        this.noDrag = true;
         event.preventDefault();
       }
       offsetLeft = Math.min(Math.max(-dragState.pageWidth + 1, offsetLeft), dragState.pageWidth - 1);
       let towards = offsetLeft < 0 ? 'next' : 'prev';
       let newIndex;
       if(towards === 'next') {
-        newIndex = this.index + 1;
+        if(dragState.nextPage) {
+          newIndex = this.index + 1;       
+        }
+       
       }else {
-        newIndex = this.index - 1
+         if(dragState.prevPage) {
+            newIndex = this.index - 1
+         }
       }
-      if(newIndex) {
+      //debugger;
+      console.log(offsetLeft);
+      if(newIndex >= 0) {
         this.index = newIndex;
         this.selected = String(newIndex + 1);
       }
 
     },
     doOnTouchEnd(event) {
-      if (this.noDrag) return;
+      console.log(this.noDrag);
+      if (!this.noDrag) return;
       let dragState = this.dragState;
       let towards = null;
-
+      this.noDrag = false;
       let offsetLeft = dragState.currentLeft - dragState.startLeft;
       let offsetTop = dragState.currentTop - dragState.startTop;
       let pageWidth = dragState.pageWidth;
