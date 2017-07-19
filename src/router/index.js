@@ -10,6 +10,7 @@ import IntegralMall from 'components/integralmall/IntegralMall';
 import Me from 'components/me/Me';
 import ChoicePlan from 'components/choiceplan/ChoicePlan';
 import LotteryHistory from 'components/lotteryhistory/LotteryHistory';
+import PlanDetail from 'components/plandetail/PlanDetail';
 
 Vue.use(Router);
 
@@ -60,6 +61,10 @@ const routes = [{
     path: '/lottery/history',
     name: 'history',
     component: LotteryHistory
+}, {
+    path: '/plan/detail',
+    name: 'plandetail',
+    component: PlanDetail
 }];
 
 export default new Router({

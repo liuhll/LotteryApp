@@ -23,7 +23,7 @@
     </div>
     <div class="track-plan-option trank-second-right">
       <span>数据</span>
-      <span>详情</span>
+      <span @click="planDetail()">详情</span>
     </div>
      <div class="clear"></div>
   </div>
@@ -102,6 +102,9 @@
       margin-left :5px
       font-size :12px
       color :#fff
+      &:active
+        background-color :#AE0000
+        color :#ffff37
 
   .clear
     clear :both
@@ -117,6 +120,11 @@ export default {
     }
   },
   created() {
+  },
+  methods: {
+    planDetail() {
+      this.$router.push({ name: 'plandetail' });
+    }
   }
 }
 </script>
