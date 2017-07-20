@@ -3,7 +3,7 @@
     <v-header :title="title"></v-header>
     <div class="history-opt-wrapper">
         <button type="button" class="btn btn-lottery-date" @click="open('picker')">选择日期</button>
-      </div>
+    </div>
     <div class="lottery-history-container">
       <div class="lottery-history-list-wrapper">
          <lottery-history-item v-for="(item,index) in 100" :key="index"></lottery-history-item>

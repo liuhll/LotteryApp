@@ -1,35 +1,66 @@
 <template>
   <div class="plan-detail-container">
     <v-header :title="detailTitle"></v-header>
-     <div class="page-navbar">
-      <mt-navbar class="page-part" v-model="selected">
-        <mt-tab-item :id="item.planTab.id" v-for="(item,index) in planDetails" :key="index">{{ item.planTab.text }}</mt-tab-item>
-      </mt-navbar> 
+    <div class="page-navbar">
+      <mt-navbar class="page-part" :style="pagepartStyle" v-model="selected">
+        <mt-tab-item :id="item.planTab.id" v-for="(item,index) in planDetails" :key="index">{{ item.planTab.text }}
+        </mt-tab-item>
+        <div class="clear"></div>
+      </mt-navbar>
+      <mt-tab-container  v-model="selected">
+        <mt-tab-container-item :id="item.planTab.id" v-for="(item,index) in planDetails" :key="index">
+          <div v-for="(n,index) in 100" :key="index" >{{item.planTab.text  + n}}</div>
+        </mt-tab-container-item>
+      </mt-tab-container>
     </div>
-    <mt-tab-container class="swiper-container" v-model="selected">
-      <mt-tab-container-item :id="item.planTab.id" v-for="(item,index) in planDetails" :key="index">
-        <mt-cell v-for="(n,index) in 10" :key="index" :title="item.planTab.text  + n" />
-      </mt-tab-container-item>
-    </mt-tab-container>
+    <div class="swiper-container">
+
+    </div>
 </div>
 </template>
 <style lang="stylus">
 .plan-detail-container
+  height :100%
 .page-navbar
-  margin-top:30px
+  padding-bottom :3px
+  overflow-x :scroll
+  border-bottom :1px solid #e0e0e0
+  position :fixed
+  top: 30px
+  width :100%
+  height :100%
+  &::-webkit-scrollbar-x
+    display :none
+  &::-ms-scrollbar-x
+    display :none
+  &::-moz-scrollbar-x
+    display :none
+  &::-o-scrollbar-x
+    display :none
+  &::scrollbar-x
+    display :none
   .page-part
-    height :35px   
+    height :35px
+    position :fixed
+    width :100%
+    & > a
+      display :inline-block
+      float :left
+    .clear
+      clear :both
     .mint-tab-item
       min-width :60px
       line-height :35px
-      display :inline-block
       vertical-align :middle
+
       &.is-selected
         color :#ce0000
         border-bottom: 2px solid #ce0000
 
-  .mint-tab-container
-    margin-top: 15px
+.mint-tab-container
+  margin-top :50px
+  position :relative
+  z-index:-100
 
 </style>
 
@@ -45,6 +76,7 @@ export default {
     this.isDone = false;
     this.$elswiper = null;
     this.$pages = [];
+    this.pagepartStyle = {};
   },
   data(){
     return {
@@ -118,8 +150,8 @@ export default {
     this.ready = true;
 
     let that = this;
-    let element = this.$el.getElementsByClassName('swiper-container')[0];
-        
+    let element = this.$el.getElementsByClassName('mint-tab-container')[0];
+
       element.addEventListener('touchstart', (event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -173,7 +205,7 @@ export default {
     },
     doOnTouchMove(event) {
       if (this.noDrag) return;
-         
+
       let dragState = this.dragState;
       let touch = event.touches[0];
       dragState.currentLeft = touch.pageX;
@@ -185,7 +217,7 @@ export default {
 
       let distanceX = Math.abs(offsetLeft);
       let distanceY = Math.abs(offsetTop);
-      
+
       if (distanceX < 5 || (distanceX >= 5 && distanceY >= 1.73 * distanceX)) {
         this.noDrag = false;
         return;
@@ -198,24 +230,24 @@ export default {
       let newIndex;
       if(towards === 'next') {
         if(dragState.nextPage) {
-          newIndex = this.index + 1;       
+          newIndex = this.index + 1;
         }
-       
+
       }else {
          if(dragState.prevPage) {
             newIndex = this.index - 1
          }
       }
-      //debugger;
-      console.log(offsetLeft);
       if(newIndex >= 0) {
-        this.index = newIndex;
-        this.selected = String(newIndex + 1);
+
+      this.index = newIndex;
+      this.selected = String(newIndex + 1);
+      this.adjustPosion(newIndex);
+
       }
 
     },
     doOnTouchEnd(event) {
-      console.log(this.noDrag);
       if (!this.noDrag) return;
       let dragState = this.dragState;
       let towards = null;
@@ -225,6 +257,22 @@ export default {
       let pageWidth = dragState.pageWidth;
 
 
+    },
+    adjustPosion(index) {
+      let flb_w = this.$el.parentElement.getElementsByClassName('page-part')[0].offsetWidth;
+      let fl_w = this.$el.parentElement.getElementsByClassName('page-part')[0].scrollWidth;
+      let nav_w = this.$el.parentElement.getElementsByClassName('mint-tab-item')[0].offsetWidth;
+      let fnl_x = nav_w * index;
+      let fn_w = (flb_w- nav_w) / 2;
+      let fnl_l;
+      if (fnl_x <= fn_w) {
+          fnl_l = 0;
+      } else if (fn_w - fnl_x <= flb_w - fl_w) {
+          fnl_l = flb_w - fl_w;
+      } else {
+          fnl_l = fn_w - fnl_x;
+      }
+      this.pagepartStyle = {left:fnl_l + 'px'};
     }
   },
 
