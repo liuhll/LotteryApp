@@ -7,15 +7,15 @@
         </mt-tab-item>
         <div class="clear"></div>
       </mt-navbar>
-      <mt-tab-container  v-model="selected">
-        <mt-tab-container-item :id="item.planTab.id" v-for="(item,index) in planDetails" :key="index">
-          <div v-for="(n,index) in 100" :key="index" >{{item.planTab.text  + n}}</div>
-        </mt-tab-container-item>
-      </mt-tab-container>
+      <div class="swiper-container">
+        <mt-tab-container  v-model="selected">
+          <mt-tab-container-item :id="item.planTab.id" v-for="(item,index) in planDetails" :key="index">
+            <plan-detail-content :areaDistance="areaDistance"></plan-detail-content>
+          </mt-tab-container-item>
+        </mt-tab-container>
+      </div>
     </div>
-    <div class="swiper-container">
 
-    </div>
 </div>
 </template>
 <style lang="stylus">
@@ -52,20 +52,22 @@
       min-width :60px
       line-height :35px
       vertical-align :middle
-
+      background :#f0f0f0
       &.is-selected
         color :#ce0000
         border-bottom: 2px solid #ce0000
 
-.mint-tab-container
-  margin-top :50px
+.swiper-container
+  margin-top :35px
   position :relative
-  z-index:-100
+  height :100%
+  z-index :-1
 
 </style>
 
 <script type="ecmascript-6">
 import Header from "components/header/Header";
+import PlanDetailContent from 'components/plandetail/PlanDetailContent';
 export default {
   created() {
     this.dragState = {};
@@ -85,6 +87,7 @@ export default {
         showBack: true
       },
       selected: '1',
+      areaDistance: { },
       planDetails: [
         {
            planTab: {
@@ -148,23 +151,24 @@ export default {
   },
   mounted() {
     this.ready = true;
-
     let that = this;
-    let element = this.$el.getElementsByClassName('mint-tab-container')[0];
-
+    let element = this.$el.getElementsByClassName('swiper-container')[0];
       element.addEventListener('touchstart', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
+       // event.preventDefault();
         that.dragging = true;
         that.userScrolling = false;
         that.doOnTouchStart(event);
       });
       element.addEventListener('touchmove', (event) => {
         if (!that.dragging) return;
-        event.preventDefault();
         that.doOnTouchMove(event);
-      },false);
+      });
       element.addEventListener('touchend', (event) => {
+        if(that.userScrolling) {
+          that.dragging = false;
+          that.dragState = {};
+          return;
+        }
         if (!that.dragging) return;
         that.dragState = {};
         that.doOnTouchEnd(event);
@@ -173,11 +177,12 @@ export default {
       });
       this.$elswiper = element;
       this.$pages = element.getElementsByClassName('mint-tab-container-item');
-
+      this.computeAreaDistance(0);
   },
   methods: {
     doOnTouchStart(event) {
       if (this.noDrag) return;
+
         let elswiper = this.$elswiper;
         let dragState = this.dragState;
         let touch = event.touches[0];
@@ -205,7 +210,6 @@ export default {
     },
     doOnTouchMove(event) {
       if (this.noDrag) return;
-
       let dragState = this.dragState;
       let touch = event.touches[0];
       dragState.currentLeft = touch.pageX;
@@ -220,11 +224,14 @@ export default {
 
       if (distanceX < 5 || (distanceX >= 5 && distanceY >= 1.73 * distanceX)) {
         this.noDrag = false;
+        this.userScrolling = true;
         return;
       } else {
         this.noDrag = true;
-        event.preventDefault();
+        this.userScrolling = false;
+     //   event.preventDefault();
       }
+
       offsetLeft = Math.min(Math.max(-dragState.pageWidth + 1, offsetLeft), dragState.pageWidth - 1);
       let towards = offsetLeft < 0 ? 'next' : 'prev';
       let newIndex;
@@ -243,7 +250,6 @@ export default {
       this.index = newIndex;
       this.selected = String(newIndex + 1);
       this.adjustPosion(newIndex);
-
       }
 
     },
@@ -255,7 +261,7 @@ export default {
       let offsetLeft = dragState.currentLeft - dragState.startLeft;
       let offsetTop = dragState.currentTop - dragState.startTop;
       let pageWidth = dragState.pageWidth;
-
+      this.computeAreaDistance(this.index);
 
     },
     adjustPosion(index) {
@@ -273,11 +279,20 @@ export default {
           fnl_l = fn_w - fnl_x;
       }
       this.pagepartStyle = {left:fnl_l + 'px'};
+    },
+    computeAreaDistance(index) {
+      let lotteryAreaHeight = this.$el.getElementsByClassName('lottery-area')[index].offsetHeight;
+      let statisticAreaHeight = this.$el.getElementsByClassName('content-statistic-area')[index].offsetHeight;
+      let distanceHeight = lotteryAreaHeight + statisticAreaHeight + 5;
+      this.areaDistance = {
+          'padding-top': distanceHeight + 'px'
+      };
     }
   },
 
   components: {
-    'v-header': Header
+    'v-header': Header,
+    'plan-detail-content': PlanDetailContent
   }
 }
 </script>

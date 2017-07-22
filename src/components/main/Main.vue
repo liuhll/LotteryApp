@@ -1,5 +1,5 @@
 <template>
-<div class="page-wrapper">
+<div class="page-container">
   <v-header :title="title"></v-header>
 
     <div class="page-wrap" :class="title.tabClass">
@@ -46,8 +46,11 @@
   overflow: auto;
   height: 100%;
   padding-bottom: 90px;
+  .mint-tab-container
+    margin-top:0
+    z-index :0
 &.plan-page
-  margin-top:225px
+  margin-top:215px
 &.integralmall-page
 &.me-page
   margin-top:50px

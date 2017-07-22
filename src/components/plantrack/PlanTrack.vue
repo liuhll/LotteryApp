@@ -105,7 +105,6 @@
       &:active
         background-color :#AE0000
         color :#ffff37
-
   .clear
     clear :both
 &.plan-track-odd
