@@ -3,6 +3,8 @@
   	<div class="lottery-area">
   		<div class="lottery-current-text">
         <span>第600039期开奖</span>
+        <span class="btn-change-norm">更改指标</span>
+        <div class="clear"></div>
       </div>
   		<lottery-number :lotteryNumber="lotteryNumber"></lottery-number>
   		<div class="lottery-predict-wrapper">
@@ -61,9 +63,7 @@
   	  </div>
 
     <div class="predict-history-area" :style="areaDistance">
-      <div class="predict-history-item">
-        预测历史
-      </div>
+      <predict-history-item v-for="(item,index) in 10" :key="index"></predict-history-item>
   	</div>
 
   </div>
@@ -83,6 +83,21 @@
       color:#5b5b5b
       span
         line-height :16px
+      .btn-change-norm
+        display: inline-block;
+        background-color: #ea0000;
+        width: 80px;
+        height: 20px;
+        line-height: 20px;
+        vertical-align: middle;
+        border-radius: 20px;
+        text-align: center;
+        font-size: 10px;
+        color: #fff;
+        float :right
+        margin-right :20px
+      .clear
+        clear :both
     .lottery-predict-wrapper
        margin-top:10px
       .lottery-predict-info
@@ -147,11 +162,12 @@
       clear:both
 
   .predict-history-area
-    padding-top :300px
+    padding-bottom :60px
 </style>
 
 <script type="ecmascript-6">
-import LotteryNumber from 'components/lotterynumber/LotteryNumber'
+import LotteryNumber from 'components/lotterynumber/LotteryNumber';
+import PredictHistoryItem from 'components/plandetail/PredictHistoryItem';
 export default {
 
   props: {
@@ -165,7 +181,8 @@ export default {
     }
   },
 	components: {
-		'lottery-number': LotteryNumber
+		'lottery-number': LotteryNumber,
+    'predict-history-item': PredictHistoryItem
 	}
 }
 </script>

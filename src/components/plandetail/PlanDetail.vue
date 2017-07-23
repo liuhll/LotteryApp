@@ -154,7 +154,7 @@ export default {
     let that = this;
     let element = this.$el.getElementsByClassName('swiper-container')[0];
       element.addEventListener('touchstart', (event) => {
-       // event.preventDefault();
+        //event.preventDefault();
         that.dragging = true;
         that.userScrolling = false;
         that.doOnTouchStart(event);
@@ -222,14 +222,14 @@ export default {
       let distanceX = Math.abs(offsetLeft);
       let distanceY = Math.abs(offsetTop);
 
-      if (distanceX < 5 || (distanceX >= 5 && distanceY >= 1.73 * distanceX)) {
+      if (distanceX < 35 || (distanceX >= 35 && distanceY >= 1.73 * distanceX)) {
         this.noDrag = false;
         this.userScrolling = true;
-        return;
+        return false;
       } else {
         this.noDrag = true;
         this.userScrolling = false;
-     //   event.preventDefault();
+        event.preventDefault();
       }
 
       offsetLeft = Math.min(Math.max(-dragState.pageWidth + 1, offsetLeft), dragState.pageWidth - 1);
