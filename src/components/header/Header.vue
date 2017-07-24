@@ -12,7 +12,7 @@
   </div>
   <div v-if="title.tabName==='tabPlan'" class="lottery-run-wrapper">
     <run-lottery></run-lottery>
-    <func-cLottery></func-cLottery>
+    <func-lottery></func-lottery>
   </div>
  </div>
 </div>
@@ -79,7 +79,7 @@ export default {
   },
   components: {
     'run-lottery': RunLottery,
-    'func-cLottery': FuncLottery
+    'func-lottery': FuncLottery
   }
 }
 </script>

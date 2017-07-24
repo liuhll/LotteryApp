@@ -43,16 +43,22 @@ export default {
         case 'choiceplan':
           this.choicePlan();
         break;
-        case 'lotteryyhistroy':
-          this.lotteryyHistroy();
+        case 'lotteryhistroy':
+          this.lotteryHistroy();
         break;
+        case 'setbasicnorm':
+          this.setBasicNorm();
+          break;
       }
     },
     choicePlan() {
       this.$router.push({ name: 'choice' });
     },
-    lotteryyHistroy() {
+    lotteryHistroy() {
       this.$router.push({ name: 'history' });
+    },
+    setBasicNorm() {
+      this.$router.push({ name: 'normbasic' });
     }
   }
 }

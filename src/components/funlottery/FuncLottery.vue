@@ -38,7 +38,7 @@ const FuncLotteryList = [{
   cname: '数据分析',
   imgSrc: require('./analyse.svg')
 }, {
-  name: 'lotteryyhistroy',
+  name: 'lotteryhistroy',
   cname: '历史开奖',
   imgSrc: require('./lotteryhistroy.svg')
 }, {

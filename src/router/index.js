@@ -11,6 +11,7 @@ import Me from 'components/me/Me';
 import ChoicePlan from 'components/choiceplan/ChoicePlan';
 import LotteryHistory from 'components/lotteryhistory/LotteryHistory';
 import PlanDetail from 'components/plandetail/PlanDetail';
+import BasicNorm from 'components/basicnorm/BasicNorm';
 
 Vue.use(Router);
 
@@ -65,6 +66,10 @@ const routes = [{
     path: '/plan/detail',
     name: 'plandetail',
     component: PlanDetail
+}, {
+    path: '/norm/basic',
+    name: 'normbasic',
+    component: BasicNorm
 }];
 
 export default new Router({
