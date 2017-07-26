@@ -12,6 +12,7 @@ import ChoicePlan from 'components/choiceplan/ChoicePlan';
 import LotteryHistory from 'components/lotteryhistory/LotteryHistory';
 import PlanDetail from 'components/plandetail/PlanDetail';
 import BasicNorm from 'components/basicnorm/BasicNorm';
+import DataAnalyse from 'components/data/DataAnalyse';
 
 Vue.use(Router);
 
@@ -70,6 +71,10 @@ const routes = [{
     path: '/norm/basic',
     name: 'normbasic',
     component: BasicNorm
+}, {
+    path: '/data/analyse',
+    name: 'dataanalyse',
+    component: DataAnalyse
 }];
 
 export default new Router({

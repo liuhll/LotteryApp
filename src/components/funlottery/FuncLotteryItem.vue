@@ -49,6 +49,9 @@ export default {
         case 'setbasicnorm':
           this.setBasicNorm();
           break;
+        case 'dataanalyse':
+          this.dataanalyse();
+          break;
       }
     },
     choicePlan() {
@@ -59,6 +62,9 @@ export default {
     },
     setBasicNorm() {
       this.$router.push({ name: 'normbasic' });
+    },
+    dataanalyse() {
+      this.$router.push({ name: 'dataanalyse' });
     }
   }
 }
